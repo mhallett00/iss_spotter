@@ -1,13 +1,14 @@
 const request = require('request');
 
+// final fly time/date/duration pull using other functions
 const nextISSTimesForMyLocation = function(callback) {
-  fetchMyIP((error, ip) => {
+  fetchMyIP ((error, ip) => {
     if (error) return callback(error, null);
     
-    fetchCoordsByIP(ip, (error, coords) => {
+    fetchCoordsByIP (ip, (error, coords) => {
       if (error) return callback(error, null);
 
-      fetchISSFlyOverTimes(coords, (error, flyOvers) => {
+      fetchISSFlyOverTimes (coords, (error, flyOvers) => {
         if (error) return callback(error,null);
         
         callback(null, flyOvers);
@@ -16,9 +17,9 @@ const nextISSTimesForMyLocation = function(callback) {
   });
 };
 
-//IP pull
+//IP pull 
 const fetchMyIP = function(callback) {
-  const url = 'https://api.ipify.org?format=json';
+  const url = 'https://api.ipify.org?format=json'
   request(url, (error, response, body) => {
     if (error) return callback("Invalid IP URL", null);
     
@@ -53,7 +54,7 @@ const fetchCoordsByIP = function(ip, callback) {
 
 // ISS flyover pull
 const fetchISSFlyOverTimes = function(coords, callback) {
-  const url = `http://api.open-notify.org/iss-pass.json?lat=${coords.latitude}&lon=${coords.longitude}`;
+  const url = `http://api.open-notify.org/iss-pass.json?lat=${coords.latitude}&lon=${coords.longitude}`
   
   request(url, (error, response, body) => {
     if (error) return callback("invalid flyover URL", null);
