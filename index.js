@@ -1,16 +1,17 @@
 const { nextISSTimesForMyLocation } = require('./iss');
+const { logFlyOvers } = require('./log-fly-overs');
 
-// console logs the fly over times.
-const logFlyOvers = (flyOvers) => {
-  for (let pass of flyOvers) {
-    const datetime = new Date(0);
-    const duration = pass.duration;
-    datetime.setUTCSeconds(pass.risetime);
+// // console logs the fly over times.
+// const logFlyOvers = (flyOvers) => {
+//   for (let pass of flyOvers) {
+//     const datetime = new Date(0);
+//     const duration = pass.duration;
+//     datetime.setUTCSeconds(pass.risetime);
     
-    console.log(`Next fly over will be on ${datetime} for ${duration} seconds!`)
-  };
+//     console.log(`Next fly over will be on ${datetime} for ${duration} seconds!`)
+//   };
 
-}
+// }
 
 // Calling function to get fly over times.
 nextISSTimesForMyLocation((error, flyOvers) => {
@@ -20,7 +21,6 @@ nextISSTimesForMyLocation((error, flyOvers) => {
 
   logFlyOvers(flyOvers);
 });
-
 
 
 
